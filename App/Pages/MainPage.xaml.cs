@@ -1,4 +1,6 @@
-﻿namespace App
+﻿using App.Pages;
+
+namespace App
 {
     public partial class MainPage : ContentPage
     {
@@ -13,6 +15,11 @@
             string password = PasswordEntry.Text;
 
             DisplayAlert("Login Information", $"Username: {username}\nPassword: {password}", "OK");
+        }
+
+        private async void OnCreateAccountClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AccountCreation());
         }
     }
 }
