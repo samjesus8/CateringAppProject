@@ -1,0 +1,6 @@
+﻿create table if not exists cateringapp."user"
+(
+	"userid" bigint not null primary key,
+	"username" varchar not null,
+	"password" varchar not null
+);
