@@ -1,6 +1,6 @@
 using App.Database;
 
-namespace App.Pages;
+namespace App.Pages.MainPages;
 
 public partial class AccountCreation : ContentPage
 {

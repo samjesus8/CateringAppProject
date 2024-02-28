@@ -1,3 +1,4 @@
+using App.Pages.MainPages;
 using App.Pages.SidebarPages;
 
 namespace App.Pages;

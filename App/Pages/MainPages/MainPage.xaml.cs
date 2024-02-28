@@ -1,7 +1,6 @@
 ﻿using App.Database;
-using App.Pages;
 
-namespace App
+namespace App.Pages.MainPages
 {
     public partial class MainPage : ContentPage
     {

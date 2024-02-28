@@ -1,4 +1,4 @@
-namespace App;
+namespace App.Pages.MainPages;
 
 public partial class AboutPage : ContentPage
 {
