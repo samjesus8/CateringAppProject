@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.MenuPage"
+             Title="MenuPage">
+    
+    <StackLayout>
+        <Label Text="Menu" HorizontalOptions="Center" FontSize="Large" Margin="20"/>
+        <Button Text="Home" Clicked="OnMenuItemClicked"/>
+        <Button Text="Option 2" Clicked="OnMenuItemClicked"/>
+        <!-- Add more menu options as needed -->
+    </StackLayout>
+    
+</ContentPage>
