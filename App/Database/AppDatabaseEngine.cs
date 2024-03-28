@@ -6,7 +6,7 @@ namespace App.Database
     {
         private string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
 
-        public bool CreateUser(User user)
+        public (bool, string) CreateUser(User user)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
@@ -25,12 +25,12 @@ namespace App.Database
                     try
                     {
                         cmd.ExecuteNonQuery();
-                        return true;
+                        return (true, string.Empty);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Error: {ex.Message}");
-                        return false;
+                        return (false, ex.ToString());
                     }
                 }
             }

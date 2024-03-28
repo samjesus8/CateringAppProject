@@ -1,9 +1,11 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using App.Database;
+using Microsoft.Extensions.Logging;
 
 namespace App
 {
     public static class MauiProgram
     {
+        public static User currentlyLoggedInUser = new();
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();

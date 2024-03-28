@@ -4,7 +4,7 @@ namespace App.Pages.MainPages;
 
 public partial class AccountCreation : ContentPage
 {
-    private AppDatabaseEngine databaseEngine;
+    private readonly AppDatabaseEngine databaseEngine;
 
     public AccountCreation()
 	{
@@ -34,17 +34,18 @@ public partial class AccountCreation : ContentPage
                 UserID = GenerateID(),
             };
 
-            bool success = await Task.Run(() => databaseEngine.CreateUser(newUser));
+            var success = await Task.Run(() => databaseEngine.CreateUser(newUser));
 
             await Navigation.PopModalAsync();
 
-            if (success)
+            if (success.Item1)
             {
                 await DisplayAlert("Success", "Account created successfully!", "OK");
+                await Navigation.PopToRootAsync();
             }
             else
             {
-                await DisplayAlert("Error", "Failed to create account. Please try again later.", "OK");
+                await DisplayAlert("Error", $"Failed to create account!!! \n\n{success.Item2}", "OK");
             }
         }
         else

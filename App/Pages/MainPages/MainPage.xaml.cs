@@ -47,6 +47,9 @@ namespace App.Pages.MainPages
                     // User object is not null, check the password
                     if (password == user.Password)
                     {
+                        // Set global user instance
+                        MauiProgram.currentlyLoggedInUser = user;
+
                         // Correct password
                         await Navigation.PushAsync(new HomePage());
                     }
