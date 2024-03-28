@@ -4,11 +4,24 @@ namespace App.Pages.MainPages
 {
     public partial class MainPage : ContentPage
     {
-        private AppDatabaseEngine databaseEngine;
+        private readonly AppDatabaseEngine databaseEngine;
         public MainPage()
         {
             InitializeComponent();
             databaseEngine = new AppDatabaseEngine();
+
+            // Clear username & password fields when loading up the form for the first time
+            UsernameEntry.Text = string.Empty;
+            PasswordEntry.Text = string.Empty;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            // Clear username and password fields when the page appears
+            UsernameEntry.Text = string.Empty;
+            PasswordEntry.Text = string.Empty;
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)

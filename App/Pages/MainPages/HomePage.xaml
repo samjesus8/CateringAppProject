@@ -10,9 +10,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Menu button -->
-        <Button Text="Menu" Clicked="OnMenuButtonClicked" HorizontalOptions="Start" VerticalOptions="Start" Margin="10"/>
-
         <!-- Main content -->
         <StackLayout Grid.Row="1">
             <!-- Content of your home page -->

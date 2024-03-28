@@ -15,10 +15,12 @@ namespace App.Database
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO cateringapp.user (userid, username, password) VALUES (@userid, @username, @password)";
+                    cmd.CommandText = "INSERT INTO cateringapp.user (userid, username, password, usertype) VALUES (@userid, @username, @password, @usertype)";
+
                     cmd.Parameters.AddWithValue("userid", user.UserID);
                     cmd.Parameters.AddWithValue("username", user.Username);
                     cmd.Parameters.AddWithValue("password", user.Password);
+                    cmd.Parameters.AddWithValue("usertype", "normal");
 
                     try
                     {
@@ -46,7 +48,7 @@ namespace App.Database
                     using (var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
-                        cmd.CommandText = "SELECT userid, username, password FROM cateringapp.user WHERE username = @username";
+                        cmd.CommandText = "SELECT userid, username, password, usertype FROM cateringapp.user WHERE username = @username";
                         cmd.Parameters.AddWithValue("username", username);
 
                         using (var reader = cmd.ExecuteReader())
@@ -57,7 +59,8 @@ namespace App.Database
                                 {
                                     Username = reader.GetString(reader.GetOrdinal("username")),
                                     Password = reader.GetString(reader.GetOrdinal("password")),
-                                    UserID = reader.GetInt64(reader.GetOrdinal("userid"))
+                                    UserID = reader.GetInt64(reader.GetOrdinal("userid")),
+                                    UserType = reader.GetString(reader.GetOrdinal("usertype"))
                                 };
                             }
                         }
