@@ -1,6 +1,6 @@
 using App.Database;
 
-namespace App.Pages;
+namespace App.Pages.Admin;
 
 public partial class AddFoodItemPage : ContentPage
 {

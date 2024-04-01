@@ -73,34 +73,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Pages\ProgressDialogPage.xaml.cs">
+	  <Compile Update="Pages\Login\ProgressDialogPage.xaml.cs">
 	    <DependentUpon>ProgressDialogPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddFoodItemPage.xaml">
+	  <MauiXaml Update="Pages\Admin\AddFoodItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPages\AboutPage.xaml">
+	  <MauiXaml Update="Pages\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPages\AccountCreation.xaml">
+	  <MauiXaml Update="Pages\Login\AccountCreation.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPages\AdminPage.xaml">
+	  <MauiXaml Update="Pages\Admin\AdminPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPages\HomePage.xaml">
+	  <MauiXaml Update="Pages\Home\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\MainPages\ViewItemsPage.xaml">
+	  <MauiXaml Update="Pages\Admin\ViewItemsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\MenuPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\ProgressDialogPage.xaml">
+	  <MauiXaml Update="Pages\Login\ProgressDialogPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

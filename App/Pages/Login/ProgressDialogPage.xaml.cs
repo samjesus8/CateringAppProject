@@ -1,4 +1,4 @@
-namespace App.Pages;
+namespace App.Pages.Login;
 
 public partial class ProgressDialogPage : ContentPage
 {

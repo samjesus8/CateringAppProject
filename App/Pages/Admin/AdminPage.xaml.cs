@@ -1,4 +1,4 @@
-namespace App.Pages.MainPages;
+namespace App.Pages.Admin;
 
 public partial class AdminPage : ContentPage
 {
