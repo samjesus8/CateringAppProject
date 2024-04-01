@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.AddFoodItemPage"
+             Title="AddFoodItemPage">
+    
+    <StackLayout>
+        <!-- Input fields for food item details -->
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" />
+        
+        <Entry Placeholder="ItemID" x:Name="ItemIDEntry" IsReadOnly="True"/>
+        <Entry Placeholder="Name" x:Name="NameEntry" />
+        <Entry Placeholder="Description" x:Name="DescriptionEntry" />
+        <Entry Placeholder="Price" Keyboard="Numeric" x:Name="PriceEntry" />
+        <Entry Placeholder="ImageURL" x:Name="ImageURLEntry" />
+
+        <!-- Button to submit the form -->
+        <Button Text="Submit" Clicked="OnSubmitClick" />
+    </StackLayout>
+    
+</ContentPage>

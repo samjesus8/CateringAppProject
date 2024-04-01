@@ -1,0 +1,8 @@
+﻿create table if not exists cateringapp."fooditems"
+(
+	"itemid" bigint not null primary key,
+	"name" varchar not null,
+	"description" varchar not null,
+	"price" double precision not null,
+	"imageurl" varchar not null
+);

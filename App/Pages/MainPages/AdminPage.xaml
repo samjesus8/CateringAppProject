@@ -3,10 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.MainPages.AdminPage"
              Title="AdminPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    
+    <StackLayout>
+        <!-- Button to add a new food item -->
+        <Button Text="Add Item" Clicked="OnAddItemClick" HorizontalOptions="End" VerticalOptions="Start" Margin="10" />
+
+        <!-- Button to view current items -->
+        <Button Text="View Items" Clicked="OnViewItemsClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" />
+    </StackLayout>
+    
 </ContentPage>

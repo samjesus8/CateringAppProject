@@ -17,8 +17,7 @@
         <ShellContent
             Title="Admin"
             ContentTemplate="{DataTemplate local:AdminPage}"
-            Icon="{OnPlatform 'admin_icon.png'}"
-            />
+            Icon="{OnPlatform 'admin_icon.png'}" />
 
         <ShellContent
             Title="About"

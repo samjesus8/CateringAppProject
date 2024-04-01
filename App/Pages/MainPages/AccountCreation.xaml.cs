@@ -14,6 +14,7 @@ public partial class AccountCreation : ContentPage
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
     {
+        // Navivate back to previous page
         await Navigation.PopAsync();
     }
 

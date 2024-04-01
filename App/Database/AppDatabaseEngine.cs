@@ -75,5 +75,36 @@ namespace App.Database
                 return (false, null);
             }
         }
+
+        public (bool, string) StoreFoodItem(FoodItem item)
+        {
+            using (var conn = new NpgsqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "INSERT INTO cateringapp.fooditems (itemid, name, description, price, imageurl) VALUES (@itemid, @name, @description, @price, @imageurl)";
+
+                    cmd.Parameters.AddWithValue("itemid", item.ItemID);
+                    cmd.Parameters.AddWithValue("name", item.Name);
+                    cmd.Parameters.AddWithValue("description", item.Description);
+                    cmd.Parameters.AddWithValue("price", item.Price);
+                    cmd.Parameters.AddWithValue("imageurl", item.FoodItemImageURL);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return (true, string.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                        return (false, ex.ToString());
+                    }
+                }
+            }
+        }
     }
 }
