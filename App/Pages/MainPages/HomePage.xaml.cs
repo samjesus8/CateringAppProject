@@ -17,4 +17,9 @@ public partial class HomePage : ContentPage
         // Navigate back to the login page
         await Navigation.PopToRootAsync();
     }
+
+    private async void OnBasketClicked(object sender, EventArgs e)
+    {
+        await DisplayAlert("Test", "Test", "OK");
+    }
 }

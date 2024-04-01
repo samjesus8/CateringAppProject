@@ -4,12 +4,23 @@
              x:Class="App.Pages.MainPages.AdminPage"
              Title="AdminPage">
     
-    <StackLayout>
-        <!-- Button to add a new food item -->
-        <Button Text="Add Item" Clicked="OnAddItemClick" HorizontalOptions="End" VerticalOptions="Start" Margin="10" />
+    <StackLayout Padding="30,0" Spacing="10">
+        <Label
+                Text="Admin Dashboard"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
 
-        <!-- Button to view current items -->
-        <Button Text="View Items" Clicked="OnViewItemsClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" />
+        <Label FontSize="20" FontAttributes="Bold" Text="Tools" />
+
+        <HorizontalStackLayout Padding="30,0" Spacing="10">
+            <!-- Button to add a new food item -->
+            <Button Text="Add Item" Clicked="OnAddItemClick" HorizontalOptions="Start" Margin="10" />
+
+            <!-- Button to view current items -->
+            <Button Text="View Items" Clicked="OnViewItemsClick" HorizontalOptions="Start" Margin="10" />
+        </HorizontalStackLayout>
+
     </StackLayout>
     
 </ContentPage>

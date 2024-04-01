@@ -4,16 +4,19 @@
              x:Class="App.Pages.MainPages.AccountCreation"
              Title="AccountCreation">
 
-    <StackLayout>
+    <StackLayout Padding="30,0" Spacing="10">
         <!-- Back button -->
-        <Button Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" />
+        <Button Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" BackgroundColor="Black" />
 
         <!-- Username and Password inputs -->
+        <Label FontSize="18" FontAttributes="Bold" Text="Username" />
         <Entry Placeholder="Username" x:Name="UsernameEntry" />
+        
+        <Label FontSize="18" FontAttributes="Bold" Text="Password" />
         <Entry Placeholder="Password" IsPassword="True" x:Name="PasswordEntry" />
 
         <!-- Create button -->
-        <Button Text="Create" Clicked="OnCreateButtonClicked" />
+        <Button Text="Create" Clicked="OnCreateButtonClicked" BackgroundColor="Green"/>
     </StackLayout>
     
 </ContentPage>

@@ -4,7 +4,7 @@
              x:Class="App.Pages.MainPages.ViewItemsPage"
              Title="ViewItemsPage">
     <StackLayout>
-        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" />
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
         <Label Text="Current items for sale" />
         
         <ListView ItemsSource="{Binding Food}">

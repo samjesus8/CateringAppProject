@@ -3,21 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.MainPages.HomePage"
              Title="HomePage">
-
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Main content -->
-        <StackLayout Grid.Row="1">
-            <!-- Content of your home page -->
-            <Label Text="This is the homepage" VerticalOptions="Center" HorizontalOptions="Center" />
+    <StackLayout>
+        <Label
+                Text="Welcome"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
+        
+        <!-- Logout button -->
+        <StackLayout Orientation="Horizontal" Spacing="5">
+            <Button Text="Logout" Clicked="OnLogoutClicked" HorizontalOptions="End" VerticalOptions="Start" Margin="10" BackgroundColor="Black"/>
+            <Button Text="Basket" Clicked="OnBasketClicked" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="10" />
         </StackLayout>
 
-        <!-- Logout button -->
-        <Button Text="Logout" Clicked="OnLogoutClicked" HorizontalOptions="End" VerticalOptions="Start" Margin="10" />
-    </Grid>
+        <Label
+                Text="Order Food"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
+
+        <Label
+                Text="Recommended for you"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
+
+        <Label
+                Text="Popular Right Now"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
+
+        <Label
+                Text="Menu"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1"
+                SemanticProperties.Description="Welcome!!!" />
+    </StackLayout>
 
 </ContentPage>

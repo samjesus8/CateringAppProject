@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="25">
+            Spacing="15">
 
             <Label
                 Text="CateringBusinessName"
@@ -14,12 +14,15 @@
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome!!!" />
 
+            <Label FontSize="18" FontAttributes="Bold" Text="Username" />
             <Entry Placeholder="Username" x:Name="UsernameEntry" />
+
+            <Label FontSize="18" FontAttributes="Bold" Text="Password" />
             <Entry Placeholder="Password" IsPassword="True" x:Name="PasswordEntry" />
 
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Login" Clicked="OnLoginClicked" />
-                <Button Text="Create Account" Clicked="OnCreateAccountClicked" />
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <Button Text="Login" Clicked="OnLoginClicked" BackgroundColor="Blue"/>
+                <Button Text="Create Account" Clicked="OnCreateAccountClicked" BackgroundColor="Green"/>
             </StackLayout>
 
         </VerticalStackLayout>

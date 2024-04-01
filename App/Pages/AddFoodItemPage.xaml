@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.AddFoodItemPage"
              Title="AddFoodItemPage">
-    
-    <StackLayout>
+
+    <StackLayout Padding="30,0" Spacing="5">
         <!-- Input fields for food item details -->
-        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" />
-        
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black"/>
+
         <Entry Placeholder="ItemID" x:Name="ItemIDEntry" IsReadOnly="True"/>
         <Entry Placeholder="Name" x:Name="NameEntry" />
         <Entry Placeholder="Description" x:Name="DescriptionEntry" />
@@ -15,7 +15,7 @@
         <Entry Placeholder="ImageURL" x:Name="ImageURLEntry" />
 
         <!-- Button to submit the form -->
-        <Button Text="Submit" Clicked="OnSubmitClick" />
+        <Button Text="Submit" Clicked="OnSubmitClick" BackgroundColor="Green"/>
     </StackLayout>
     
 </ContentPage>

@@ -5,6 +5,7 @@ namespace App.Pages.MainPages
     public partial class MainPage : ContentPage
     {
         private readonly AppDatabaseEngine databaseEngine;
+
         public MainPage()
         {
             InitializeComponent();
@@ -49,6 +50,9 @@ namespace App.Pages.MainPages
                     {
                         // Set global user instance
                         MauiProgram.currentlyLoggedInUser = user;
+
+                        // Dismiss Keyboard
+                        this.Unfocus();
 
                         // Correct password
                         await Navigation.PushAsync(new HomePage());
