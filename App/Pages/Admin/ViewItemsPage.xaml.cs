@@ -44,4 +44,15 @@ public partial class ViewItemsPage : ContentPage
         // Navivate back to previous page
         await Navigation.PopAsync();
     }
+
+    private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        if (e.SelectedItem != null && e.SelectedItem is FoodItem selectedFoodItem)
+        {
+            await DisplayAlert("Item", $"ItemID: {selectedFoodItem.ItemID} \n" +
+                           $"Name: {selectedFoodItem.Name} \n" +
+                           $"Description: {selectedFoodItem.Description} \n" +
+                           $"Price: {selectedFoodItem.Price}", "Close");
+        }
+    }
 }

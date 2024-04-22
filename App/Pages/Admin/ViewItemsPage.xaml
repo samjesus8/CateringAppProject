@@ -9,7 +9,7 @@
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
         <Label Text="Current items for sale" />
         
-        <ListView ItemsSource="{Binding FoodItem}">
+        <ListView ItemsSource="{Binding FoodItem}" ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ImageCell ImageSource="{Binding FoodItemImageURL}"
