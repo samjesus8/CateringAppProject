@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Admin.EditItemForm"
+             Title="EditItemForm">
+    <StackLayout>
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
+        
+        <Entry Placeholder="Name" Text="{Binding SelectedFoodItem.Name}" x:Name="NameEntry" />
+        <Entry Placeholder="Description" Text="{Binding SelectedFoodItem.Description}" x:Name="DescriptionEntry" />
+        <Entry Placeholder="Price" Text="{Binding SelectedFoodItem.Price}" x:Name="PriceEntry" />
+        <Entry Placeholder="Image URL" Text="{Binding SelectedFoodItem.ImageURL}" x:Name="ImageURLEntry" />
+        
+        <Button Text="Submit Changes" Clicked="OnSubmitChangesClicked" />
+    </StackLayout>
+</ContentPage>

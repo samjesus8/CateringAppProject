@@ -21,6 +21,11 @@
             <Button Text="View Items" Clicked="OnViewItemsClick" HorizontalOptions="Start" Margin="10" />
         </HorizontalStackLayout>
 
+        <HorizontalStackLayout Padding="30,0" Spacing="10">
+            <!-- Button to edit current items -->
+            <Button Text="Edit Items" Clicked="OnEditItemsClick" HorizontalOptions="Start" Margin="10" />
+        </HorizontalStackLayout>
+
     </StackLayout>
     
 </ContentPage>

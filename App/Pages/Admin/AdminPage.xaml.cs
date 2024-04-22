@@ -18,4 +18,9 @@ public partial class AdminPage : ContentPage
         // Navigate to the page to view current items
         await Navigation.PushAsync(new ViewItemsPage());
     }
+
+    private async void OnEditItemsClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditItemPage());
+    }
 }

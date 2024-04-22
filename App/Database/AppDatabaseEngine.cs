@@ -17,6 +17,7 @@ namespace App.Database
                     cmd.Connection = conn;
                     cmd.CommandText = "INSERT INTO cateringapp.user (userid, username, password, usertype) VALUES (@userid, @username, @password, @usertype)";
 
+                    //SQL Parameters
                     cmd.Parameters.AddWithValue("userid", user.UserID);
                     cmd.Parameters.AddWithValue("username", user.Username);
                     cmd.Parameters.AddWithValue("password", user.Password);
@@ -49,6 +50,8 @@ namespace App.Database
                     {
                         cmd.Connection = conn;
                         cmd.CommandText = "SELECT userid, username, password, usertype FROM cateringapp.user WHERE username = @username";
+
+                        //SQL Parameters
                         cmd.Parameters.AddWithValue("username", username);
 
                         using (var reader = cmd.ExecuteReader())
@@ -87,6 +90,7 @@ namespace App.Database
                     cmd.Connection = conn;
                     cmd.CommandText = "INSERT INTO cateringapp.fooditems (itemid, name, description, price, imageurl) VALUES (@itemid, @name, @description, @price, @imageurl)";
 
+                    //SQL Parameters
                     cmd.Parameters.AddWithValue("itemid", item.ItemID);
                     cmd.Parameters.AddWithValue("name", item.Name);
                     cmd.Parameters.AddWithValue("description", item.Description);
@@ -148,6 +152,38 @@ namespace App.Database
             {
                 Console.WriteLine($"Error: {ex.Message}");
                 return (false, null);
+            }
+        }
+
+        public (bool, string) ModifyItem(FoodItem item)
+        {
+            using (var conn = new NpgsqlConnection(ConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UPDATE cateringapp.fooditems SET name = @name, description = @description, price = @price, imageurl = @imageurl WHERE itemid = @itemid";
+
+                    //SQL Parameters
+                    cmd.Parameters.AddWithValue("name", item.Name);
+                    cmd.Parameters.AddWithValue("description", item.Description);
+                    cmd.Parameters.AddWithValue("price", item.Price);
+                    cmd.Parameters.AddWithValue("imageurl", item.FoodItemImageURL);
+                    cmd.Parameters.AddWithValue("itemid", item.ItemID);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        return (true, string.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                        return (false, ex.ToString());
+                    }
+                }
             }
         }
     }
