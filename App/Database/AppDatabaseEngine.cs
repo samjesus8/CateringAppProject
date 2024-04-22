@@ -106,5 +106,49 @@ namespace App.Database
                 }
             }
         }
+
+        public (bool, List<FoodItem>) GetAllFoodItems()
+        {
+            List<FoodItem> foodItems = new List<FoodItem>();
+
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "SELECT itemid, name, description, price, imageurl FROM cateringapp.fooditems";
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                FoodItem foodItem = new()
+                                {
+                                    ItemID = reader.GetInt64(reader.GetOrdinal("itemid")),
+                                    Name = reader.GetString(reader.GetOrdinal("name")),
+                                    Description = reader.GetString(reader.GetOrdinal("description")),
+                                    Price = reader.GetDouble(reader.GetOrdinal("price")),
+                                    FoodItemImageURL = reader.GetString(reader.GetOrdinal("imageurl"))
+                                };
+
+                                foodItems.Add(foodItem);
+                            }
+                        }
+                    }
+                }
+
+                return (true, foodItems);
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return (false, null);
+            }
+        }
     }
 }

@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:App.Pages.Admin"
              x:Class="App.Pages.Admin.ViewItemsPage"
-             Title="ViewItemsPage">
+             Title="ViewItemsPage"
+             x:DataType="viewModels:ViewItemsPage">
     <StackLayout>
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
         <Label Text="Current items for sale" />
         
-        <ListView ItemsSource="{Binding Food}">
+        <ListView ItemsSource="{Binding FoodItem}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell ImageSource="{Binding Image}"
+                    <ImageCell ImageSource="{Binding FoodItemImageURL}"
                        Text="{Binding Name}"
                        Detail="{Binding Description}" />
                 </DataTemplate>
