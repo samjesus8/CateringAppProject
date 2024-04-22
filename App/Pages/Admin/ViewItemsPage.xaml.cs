@@ -23,7 +23,7 @@ public partial class ViewItemsPage : ContentPage
     private async void LoadItems()
     {
         // Retrieve the list of food items from the database
-        var items = databaseEngine.GetAllFoodItems();
+        var items = await databaseEngine.GetAllFoodItemsAsync();
 
         // Clear the existing items
         FoodItem.Clear();

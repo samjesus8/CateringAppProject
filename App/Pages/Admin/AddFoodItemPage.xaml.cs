@@ -43,7 +43,7 @@ public partial class AddFoodItemPage : ContentPage
             FoodItemImageURL = imageURL
         };
 
-        var isStored = databaseEngine.StoreFoodItem(newFoodItem);
+        var isStored = await databaseEngine.StoreFoodItemAsync(newFoodItem);
 
         if (isStored.Item1)
         {

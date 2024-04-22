@@ -39,7 +39,7 @@ public partial class EditItemForm : ContentPage
 			FoodItemImageURL = this.ImageURLEntry.Text
 		};
 
-		var isModified = databaseEngine.ModifyItem(modifiedItem);
+		var isModified = await databaseEngine.ModifyItemAsync(modifiedItem);
 		if (isModified.Item1 == true)
 		{
 			await DisplayAlert("Sucess", "Sucessfully modified item!!!", "OK");

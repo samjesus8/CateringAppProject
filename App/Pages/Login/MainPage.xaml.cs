@@ -37,7 +37,7 @@ namespace App.Pages.Login
                 return;
             }
 
-            var userDetails = databaseEngine.GetUser(username);
+            var userDetails = await databaseEngine.GetUserAsync(username);
 
             if (userDetails.Item1 == true)
             {

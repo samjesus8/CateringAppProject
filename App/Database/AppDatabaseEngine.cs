@@ -6,11 +6,11 @@ namespace App.Database
     {
         private string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
 
-        public (bool, string) CreateUser(User user)
+        public async Task<(bool, string)> CreateUserAsync(User user)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 using (var cmd = new NpgsqlCommand())
                 {
@@ -25,7 +25,7 @@ namespace App.Database
 
                     try
                     {
-                        cmd.ExecuteNonQuery();
+                        await cmd.ExecuteNonQueryAsync();
                         return (true, string.Empty);
                     }
                     catch (Exception ex)
@@ -37,14 +37,14 @@ namespace App.Database
             }
         }
 
-        public (bool, User) GetUser(string username)
+        public async Task<(bool, User)> GetUserAsync(string username)
         {
             User user = null;
             try
             {
                 using (var conn = new NpgsqlConnection(ConnectionString))
                 {
-                    conn.Open();
+                    await conn.OpenAsync();
 
                     using (var cmd = new NpgsqlCommand())
                     {
@@ -54,9 +54,9 @@ namespace App.Database
                         //SQL Parameters
                         cmd.Parameters.AddWithValue("username", username);
 
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            if (reader.Read())
+                            if (await reader.ReadAsync())
                             {
                                 user = new User()
                                 {
@@ -79,11 +79,11 @@ namespace App.Database
             }
         }
 
-        public (bool, string) StoreFoodItem(FoodItem item)
+        public async Task<(bool, string)> StoreFoodItemAsync(FoodItem item)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 using (var cmd = new NpgsqlCommand())
                 {
@@ -99,7 +99,7 @@ namespace App.Database
 
                     try
                     {
-                        cmd.ExecuteNonQuery();
+                        await cmd.ExecuteNonQueryAsync();
                         return (true, string.Empty);
                     }
                     catch (Exception ex)
@@ -111,7 +111,7 @@ namespace App.Database
             }
         }
 
-        public (bool, List<FoodItem>) GetAllFoodItems()
+        public async Task<(bool, List<FoodItem>)> GetAllFoodItemsAsync()
         {
             List<FoodItem> foodItems = new List<FoodItem>();
 
@@ -119,16 +119,16 @@ namespace App.Database
             {
                 using (var conn = new NpgsqlConnection(ConnectionString))
                 {
-                    conn.Open();
+                    await conn.OpenAsync();
 
                     using (var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
                         cmd.CommandText = "SELECT itemid, name, description, price, imageurl FROM cateringapp.fooditems";
 
-                        using (var reader = cmd.ExecuteReader())
+                        using (var reader = await cmd.ExecuteReaderAsync())
                         {
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
                                 FoodItem foodItem = new()
                                 {
@@ -155,11 +155,11 @@ namespace App.Database
             }
         }
 
-        public (bool, string) ModifyItem(FoodItem item)
+        public async Task<(bool, string)> ModifyItemAsync(FoodItem item)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 using (var cmd = new NpgsqlCommand())
                 {
@@ -175,7 +175,7 @@ namespace App.Database
 
                     try
                     {
-                        cmd.ExecuteNonQuery();
+                        await cmd.ExecuteNonQueryAsync();
                         return (true, string.Empty);
                     }
                     catch (Exception ex)

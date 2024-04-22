@@ -35,7 +35,7 @@ public partial class AccountCreation : ContentPage
                 UserID = GenerateID(),
             };
 
-            var success = await Task.Run(() => databaseEngine.CreateUser(newUser));
+            var success = await databaseEngine.CreateUserAsync(newUser);
 
             await Navigation.PopModalAsync();
 
