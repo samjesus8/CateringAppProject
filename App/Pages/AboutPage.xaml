@@ -2,16 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.AboutPage">
-    <VerticalStackLayout Spacing="10" Margin="10">
-        <HorizontalStackLayout Spacing="10">
-            <Image Source="dotnet_bot.png"
-                   SemanticProperties.Description="The dot net bot waving hello!"
-                   HeightRequest="64" />
-            <Label FontSize="22" FontAttributes="Bold" Text="Notes" VerticalOptions="End" />
-            <Label FontSize="22" Text="v1.0" VerticalOptions="End" />
-        </HorizontalStackLayout>
+    
+    <StackLayout Padding="10" Spacing="10">
+        <Label FontSize="22" FontAttributes="Bold" Text="About My App" />
 
-        <Label Text="This app is written in XAML and C# with .NET MAUI." />
+        <!-- Display Application Name -->
+        <Label Text="Application Name: MyApp" />
+
+        <!-- Display Version Number -->
+        <Label Text="Version: 1.0" />
+
+        <!-- Display Contact Details -->
+        <Label Text="Contact Details: contact@example.com" />
+
+        <!-- Display Official Website -->
+        <Label Text="Official Website: www.myapp.com" />
+
+        <!-- Display Basic System Info -->
+        <Label Text="Device Name: {DeviceInfo.Name}" />
+        <Label Text="CPU: {DeviceInfo.Cpu}" />
+        <Label Text="RAM: {DeviceInfo.Ram}" />
+
+        <!-- Learn more button -->
         <Button Text="Learn more..." Clicked="LearnMore_Clicked" />
-    </VerticalStackLayout>
+    </StackLayout>
+    
 </ContentPage>

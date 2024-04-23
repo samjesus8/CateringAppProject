@@ -6,7 +6,7 @@ namespace App.Database
     {
         private string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
 
-        public async Task<(bool, string)> CreateUserAsync(User user)
+        public async Task<(bool, string)> CreateUserAsync(User user, bool isAdmin)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
             {
@@ -21,7 +21,15 @@ namespace App.Database
                     cmd.Parameters.AddWithValue("userid", user.UserID);
                     cmd.Parameters.AddWithValue("username", user.Username);
                     cmd.Parameters.AddWithValue("password", user.Password);
-                    cmd.Parameters.AddWithValue("usertype", "normal");
+
+                    if (isAdmin == true)
+                    {
+                        cmd.Parameters.AddWithValue("usertype", "admin");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("usertype", "normal");
+                    }
 
                     try
                     {

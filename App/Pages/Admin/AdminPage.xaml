@@ -6,13 +6,13 @@
     
     <StackLayout Padding="30,0" Spacing="10">
         <Label
-                Text="Admin Dashboard"
+                Text="Admin Menu"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome!!!" />
 
-        <Label FontSize="20" FontAttributes="Bold" Text="Tools" />
-
+        <!-- Item Management -->
+        <Label FontSize="20" FontAttributes="Bold" Text="Manage Items" />
         <HorizontalStackLayout Padding="30,0" Spacing="10">
             <!-- Button to add a new food item -->
             <Button Text="Add Item" Clicked="OnAddItemClick" HorizontalOptions="Start" Margin="10" />
@@ -24,6 +24,12 @@
         <HorizontalStackLayout Padding="30,0" Spacing="10">
             <!-- Button to edit current items -->
             <Button Text="Edit Items" Clicked="OnEditItemsClick" HorizontalOptions="Start" Margin="10" />
+        </HorizontalStackLayout>
+
+        <!-- User Management -->
+        <Label FontSize="20" FontAttributes="Bold" Text="Users" />
+        <HorizontalStackLayout Padding="30,0" Spacing="10">
+            <Button Text="Manage Admin Accounts" Clicked="OnManageAdminClick" HorizontalOptions="Start" Margin="10" />
         </HorizontalStackLayout>
 
     </StackLayout>

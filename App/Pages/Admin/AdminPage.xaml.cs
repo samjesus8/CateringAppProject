@@ -23,4 +23,9 @@ public partial class AdminPage : ContentPage
     {
         await Navigation.PushAsync(new EditItemPage());
     }
+
+    private async void OnManageAdminClick(object sender, EventArgs e)
+    {
+        await DisplayAlert("Test", "Test", "OK");
+    }
 }
