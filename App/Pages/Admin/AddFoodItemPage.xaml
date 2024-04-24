@@ -8,10 +8,19 @@
         <!-- Input fields for food item details -->
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black"/>
 
+        <Label FontSize="18" FontAttributes="Bold" Text="ItemID (Automatically Generated)" />
         <Entry Placeholder="ItemID" x:Name="ItemIDEntry" IsReadOnly="True"/>
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Name" />
         <Entry Placeholder="Name" x:Name="NameEntry" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Description" />
         <Entry Placeholder="Description" x:Name="DescriptionEntry" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Price" />
         <Entry Placeholder="Price" Keyboard="Numeric" x:Name="PriceEntry" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Image URL" />
         <Entry Placeholder="ImageURL" x:Name="ImageURLEntry" />
 
         <!-- Button to submit the form -->

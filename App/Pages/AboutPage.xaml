@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App.Pages.AboutPage">
+             xmlns:viewModels="clr-namespace:App.Pages"
+             x:Class="App.Pages.AboutPage"
+             x:DataType="viewModels:AboutPage">
     
-    <StackLayout Padding="10" Spacing="10">
-        <Label FontSize="22" FontAttributes="Bold" Text="About My App" />
-
-        <!-- Display Application Name -->
-        <Label Text="Application Name: MyApp" />
-
-        <!-- Display Version Number -->
+    <StackLayout Padding="10" Spacing="5">
+        <!-- General Info -->
+        <Label FontSize="22" FontAttributes="Bold" Text="About MyApp" />
+        <Label Text="Application Name: MyAppPrototype" />
         <Label Text="Version: 1.0" />
-
-        <!-- Display Contact Details -->
         <Label Text="Contact Details: contact@example.com" />
-
-        <!-- Display Official Website -->
         <Label Text="Official Website: www.myapp.com" />
 
-        <!-- Display Basic System Info -->
-        <Label Text="Device Name: {DeviceInfo.Name}" />
-        <Label Text="CPU: {DeviceInfo.Cpu}" />
-        <Label Text="RAM: {DeviceInfo.Ram}" />
+        <!-- System Info -->
+        <Label FontSize="22" FontAttributes="Bold" Text="System Info" />
+        <Label Text="{Binding DeviceName, StringFormat='Name: {0}'}" />
+        <Label Text="{Binding DeviceOS, StringFormat='Operating System: {0}'}" />
+        <Label Text="{Binding DeviceManufacturer, StringFormat='Manufacturer: {0}'}" />
 
         <!-- Learn more button -->
         <Button Text="Learn more..." Clicked="LearnMore_Clicked" />
