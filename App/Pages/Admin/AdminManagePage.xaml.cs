@@ -46,4 +46,12 @@ public partial class AdminManagePage : ContentPage
 			AdminUsers.Add(user);
 		}
 	}
+
+    private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+		if (e.SelectedItem != null && e.SelectedItem is User AdminUser)
+		{
+			await Navigation.PushModalAsync(new EditAdminUserForm(AdminUser));
+		}
+    }
 }

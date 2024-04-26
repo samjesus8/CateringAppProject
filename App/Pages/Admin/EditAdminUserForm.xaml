@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Admin.EditAdminUserForm"
+             Title="EditAdminUserForm">
+
+    <StackLayout Padding="30,0" Spacing="5">
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="UserID" />
+        <Entry Placeholder="UserID" x:Name="UserIDEntry" IsReadOnly="True" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Username" />
+        <Entry Placeholder="Username" x:Name="UsernameEntry" />
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Password" />
+        <Entry Placeholder="Password" x:Name="PasswordEntry" />
+
+        <Button Text="Submit Changes" Clicked="OnSubmitChangesClicked" />
+    </StackLayout>
+</ContentPage>

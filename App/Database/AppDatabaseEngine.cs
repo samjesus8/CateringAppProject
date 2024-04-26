@@ -267,5 +267,34 @@ namespace App.Database
                 }
             }
         }
+
+        public async Task<(bool, string)> ModifyUserAsync(User user)
+        {
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "UPDATE cateringapp.user SET username = @username, password = @password WHERE userid = @userid";
+
+                        //SQL Parameters
+                        cmd.Parameters.AddWithValue("username", user.Username);
+                        cmd.Parameters.AddWithValue("password", user.Password);
+                        cmd.Parameters.AddWithValue("userid", user.UserID);
+
+                        await cmd.ExecuteNonQueryAsync();
+                        return (true, string.Empty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.ToString());
+            }
+        }
     }
 }

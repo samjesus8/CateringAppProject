@@ -42,12 +42,12 @@ public partial class EditItemForm : ContentPage
 		var isModified = await databaseEngine.ModifyItemAsync(modifiedItem);
 		if (isModified.Item1 == true)
 		{
-			await DisplayAlert("Sucess", "Sucessfully modified item!!!", "OK");
+			await DisplayAlert("Success", "Sucessfully modified item!!!", "OK");
 			await Navigation.PopModalAsync();
 		}
 		else
 		{
-			await DisplayAlert("Fail", $"Something went wrong when trying to modify this item \n\nError: {isModified.Item2}", "OK");
+			await DisplayAlert("Error", $"Something went wrong when trying to modify this item \n\nError: {isModified.Item2}", "OK");
 		}
 	}
 

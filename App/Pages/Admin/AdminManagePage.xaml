@@ -17,7 +17,7 @@
         
         <!-- Manage Existing Users -->
         <Label FontSize="20" FontAttributes="Bold" Text="Manage Admins" />
-        <ListView ItemsSource="{Binding AdminUsers}">
+        <ListView ItemsSource="{Binding AdminUsers}" ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Username, StringFormat='Username: {0}'}"
