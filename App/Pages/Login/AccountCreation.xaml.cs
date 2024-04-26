@@ -5,11 +5,21 @@ namespace App.Pages.Login;
 public partial class AccountCreation : ContentPage
 {
     private readonly AppDatabaseEngine databaseEngine;
+    bool isAdminUser { get; set; }
 
-    public AccountCreation()
+    public AccountCreation(bool isAdmin)
 	{
 		InitializeComponent();
         databaseEngine = new AppDatabaseEngine();
+
+        if (isAdmin == true )
+        {
+            this.isAdminUser = true;
+        }
+        else
+        {
+            this.isAdminUser = false;
+        }
     }
 
     private async void OnBackButtonClicked(object sender, EventArgs e)
@@ -35,14 +45,22 @@ public partial class AccountCreation : ContentPage
                 UserID = GenerateID(),
             };
 
-            var success = await databaseEngine.CreateUserAsync(newUser, false);
+            var success = await databaseEngine.CreateUserAsync(newUser, this.isAdminUser);
 
             await Navigation.PopModalAsync();
 
             if (success.Item1)
             {
-                await DisplayAlert("Success", "Account created successfully!", "OK");
-                await Navigation.PopToRootAsync();
+                if (this.isAdminUser == false)
+                {
+                    await DisplayAlert("Success", "Account successfully created!", "OK");
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Success", "Admin User successfully created!", "OK");
+                    await Navigation.PopToRootAsync();
+                }
             }
             else
             {

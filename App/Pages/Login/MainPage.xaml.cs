@@ -79,7 +79,7 @@ namespace App.Pages.Login
 
         private async void OnCreateAccountClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AccountCreation());
+            await Navigation.PushAsync(new AccountCreation(false));
         }
     }
 }

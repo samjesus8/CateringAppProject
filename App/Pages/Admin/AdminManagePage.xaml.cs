@@ -1,4 +1,5 @@
 using App.Database;
+using App.Pages.Login;
 using System.Collections.ObjectModel;
 
 namespace App.Pages.Admin;
@@ -22,7 +23,7 @@ public partial class AdminManagePage : ContentPage
 
 	private async void OnAddAdminClick(object sender, EventArgs e)
 	{
-		await DisplayAlert("Test", "Test", "OK");
+		await Navigation.PushAsync(new AccountCreation(true));
 	}
 
 	private async void OnBackButtonClick(object sender, EventArgs e)
