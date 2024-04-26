@@ -38,7 +38,6 @@ namespace App.Database
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error: {ex.Message}");
                         return (false, ex.ToString());
                     }
                 }
@@ -115,7 +114,6 @@ namespace App.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
                 return (false, null);
             }
         }
@@ -155,7 +153,6 @@ namespace App.Database
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
                 return (false, null);
             }
         }
@@ -185,7 +182,6 @@ namespace App.Database
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error: {ex.Message}");
                         return (false, ex.ToString());
                     }
                 }
@@ -231,7 +227,6 @@ namespace App.Database
 
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
                 return (false, null);
             }
         }
@@ -261,7 +256,6 @@ namespace App.Database
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine($"Error: {ex.Message}");
                         return (false, ex.ToString());
                     }
                 }
