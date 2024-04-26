@@ -45,27 +45,37 @@ public partial class AccountCreation : ContentPage
                 UserID = GenerateID(),
             };
 
-            var success = await databaseEngine.CreateUserAsync(newUser, this.isAdminUser);
-
-            await Navigation.PopModalAsync();
-
-            if (success.Item1)
+            var doesExist = await databaseEngine.CheckUserExistsAsync(newUser.Username);
+            if (doesExist.Item1 == false)
             {
-                if (this.isAdminUser == false)
+                var success = await databaseEngine.CreateUserAsync(newUser, this.isAdminUser);
+
+                await Navigation.PopModalAsync();
+
+                if (success.Item1)
                 {
-                    await DisplayAlert("Success", "Account successfully created!", "OK");
-                    await Navigation.PopToRootAsync();
+                    if (this.isAdminUser == false)
+                    {
+                        await DisplayAlert("Success", "Account successfully created!", "OK");
+                        await Navigation.PopToRootAsync();
+                    }
+                    else
+                    {
+                        await DisplayAlert("Success", "Admin User successfully created!", "OK");
+                        await Navigation.PopToRootAsync();
+                    }
                 }
                 else
                 {
-                    await DisplayAlert("Success", "Admin User successfully created!", "OK");
-                    await Navigation.PopToRootAsync();
+                    await DisplayAlert("Error", $"Failed to create account!!! \n\n{success.Item2}", "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Error", $"Failed to create account!!! \n\n{success.Item2}", "OK");
+                await DisplayAlert("Error", $"That user alerady exists!!!", "OK");
+                await Navigation.PopModalAsync();
             }
+
         }
         else
         {

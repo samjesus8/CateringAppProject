@@ -45,6 +45,39 @@ namespace App.Database
             }
         }
 
+        public async Task<(bool, string)> CheckUserExistsAsync(string username)
+        {
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "SELECT EXISTS (SELECT 1 FROM cateringapp.user WHERE username = @username LIMIT 1);";
+                        cmd.Parameters.AddWithValue("username", username);
+
+                        bool userExists = (bool)await cmd.ExecuteScalarAsync();
+
+                        if (userExists)
+                        {
+                            return (true, String.Empty);
+                        }
+                        else
+                        {
+                            return (false, String.Empty);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.ToString());
+            }
+        }
+
         public async Task<(bool, User)> GetUserAsync(string username)
         {
             User user = null;
