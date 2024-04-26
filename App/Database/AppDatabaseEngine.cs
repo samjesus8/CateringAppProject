@@ -87,6 +87,46 @@ namespace App.Database
             }
         }
 
+        public async Task<(bool, List<User>)> GetAllAdminUsersAsync()
+        {
+            List<User> adminUsers = new List<User>();
+
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "SELECT userid, username, password, usertype FROM cateringapp.user WHERE usertype = 'admin'";
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                adminUsers.Add(new User()
+                                {
+                                    Username = reader.GetString(reader.GetOrdinal("username")),
+                                    Password = reader.GetString(reader.GetOrdinal("password")),
+                                    UserID = reader.GetInt64(reader.GetOrdinal("userid")),
+                                    UserType = reader.GetString(reader.GetOrdinal("usertype"))
+                                });
+                            }
+                        }
+                    }
+                }
+
+                return (true, adminUsers);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                return (false, null);
+            }
+        }
+
         public async Task<(bool, string)> StoreFoodItemAsync(FoodItem item)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))

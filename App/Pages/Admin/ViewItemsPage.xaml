@@ -5,7 +5,7 @@
              x:Class="App.Pages.Admin.ViewItemsPage"
              Title="ViewItemsPage"
              x:DataType="viewModels:ViewItemsPage">
-    <StackLayout>
+    <StackLayout Padding="20,0" Spacing="10">
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
         <Label FontSize="18" FontAttributes="Bold" Text="Current items for sale" />
         
