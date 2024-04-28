@@ -17,11 +17,13 @@
         <ShellContent
             Title="Admin"
             ContentTemplate="{DataTemplate local:Admin.AdminPage}"
+            Route="AdminPage"
             Icon="{OnPlatform 'admin_icon.png'}" />
 
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"
+            Route="AboutPage"
             Icon="{OnPlatform 'icon_about.png'}" />
     </TabBar>
 
