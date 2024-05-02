@@ -6,7 +6,7 @@ namespace App
     public static class MauiProgram
     {
         public static User currentlyLoggedInUser = new();
-        public static Dictionary<User, Dictionary<FoodItem, int>> currentUserBasket = new(); //Each user will have a Dictionary of <FoodItem, Quantity>
+        public static Dictionary<string, int> currentUserBasket = new(); //Each user will have a Dictionary of <FoodItemName, Quantity>
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();

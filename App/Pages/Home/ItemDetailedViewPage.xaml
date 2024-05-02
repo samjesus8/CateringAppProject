@@ -28,6 +28,19 @@
             <Label FontSize="18" FontAttributes="Bold" Text="Price" />
             <Entry Text="{Binding currentItem.Price}" Placeholder="Name" x:Name="PriceEntry" IsReadOnly="True" />
 
+            <!-- Input for item quantity -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Quantity" />
+            <StackLayout Orientation="Horizontal" Spacing="5">
+                <!-- Button to decrease quantity -->
+                <Button Text="-" Clicked="OnDecreaseQuantityClicked" />
+
+                <!-- Input for item quantity -->
+                <Entry Text="1" Placeholder="Quantity" x:Name="QuantityEntry" Keyboard="Numeric" />
+
+                <!-- Button to increase quantity -->
+                <Button Text="+" Clicked="OnIncreaseQuantityClicked" />
+            </StackLayout>
+
             <!-- Button to add item to basket -->
             <Button Text="Add to Basket" Clicked="OnBasketAddButtonClicked" />
         </StackLayout>
