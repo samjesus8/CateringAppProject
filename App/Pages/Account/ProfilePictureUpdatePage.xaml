@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Account.ProfilePictureUpdatePage"
+             Title="ProfilePictureUpdatePage">
+    <StackLayout Padding="30,0" Spacing="10">
+        <Button Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" BackgroundColor="Black" />
+        
+        <Label Text="Please enter the URL of the picture you wish to apply:" FontSize="19" FontAttributes="Bold" />
+        <Entry Placeholder="URL" x:Name="URLEntry" />
+        
+        <Button Text="Submit" Clicked="OnSubmitClicked" BackgroundColor="Green" />
+    </StackLayout>
+</ContentPage>

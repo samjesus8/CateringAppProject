@@ -20,7 +20,7 @@ public partial class AccountPage : ContentPage
 
 	private async void OnUploadProfilePictureClicked(object sender, EventArgs e)
 	{
-
+		await Navigation.PushModalAsync(new ProfilePictureUpdatePage());
 	}
 
 	private async void OnChangeClicked(object sender, EventArgs e)
