@@ -3,43 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.Home.HomePage"
              Title="HomePage">
-    
+
     <StackLayout>
-        <Label
-                Text="Welcome"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome!!!" />
-        
-        <!-- Logout button -->
         <StackLayout Orientation="Horizontal" Spacing="5">
+            <!-- Logout button -->
             <Button Text="Logout" Clicked="OnLogoutClicked" HorizontalOptions="End" VerticalOptions="Start" Margin="10" BackgroundColor="Black"/>
+
+            <!-- Basket button -->
             <Button Text="Basket" Clicked="OnBasketClicked" HorizontalOptions="EndAndExpand" VerticalOptions="Start" Margin="10" />
         </StackLayout>
-
-        <Label
-                Text="Order Food"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome!!!" />
-
-        <Label
-                Text="Recommended for you"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome!!!" />
-
-        <Label
-                Text="Popular Right Now"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level1"
-                SemanticProperties.Description="Welcome!!!" />
 
         <Label
                 Text="Menu"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level1"
                 SemanticProperties.Description="Welcome!!!" />
+
+        <!-- CollectionView for all the food items on the menu -->
+        <CollectionView ItemsSource="{Binding FoodItem}" SelectionMode="Single" SelectionChanged="CollectionView_SelectionChanged">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5">
+                        <Image Source="{Binding FoodItemImageURL}" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                        <Label Text="{Binding Name}" FontAttributes="Bold" />
+                        <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
     </StackLayout>
 
 </ContentPage>

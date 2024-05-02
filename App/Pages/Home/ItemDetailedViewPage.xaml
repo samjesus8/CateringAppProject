@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Home.ItemDetailedViewPage"
+             Title="ItemDetailedViewPage">
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" VerticalOptions="Start" BackgroundColor="Black" />
+
+        <!-- Display item picture -->
+        <Image Grid.Row="1" Source="{Binding currentItem.FoodItemImageURL}" HeightRequest="160" />
+
+        <StackLayout Grid.Row="2">
+            <!-- Display Item Name -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Name" />
+            <Entry Text="{Binding currentItem.Name}" Placeholder="Name" x:Name="NameEntry" IsReadOnly="True" />
+
+            <!-- Display Item Description -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Description" />
+            <Entry Text="{Binding currentItem.Description}" Placeholder="Name" x:Name="DescriptionEntry" IsReadOnly="True" />
+
+            <!-- Display Item Price -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Price" />
+            <Entry Text="{Binding currentItem.Price}" Placeholder="Name" x:Name="PriceEntry" IsReadOnly="True" />
+
+            <!-- Button to add item to basket -->
+            <Button Text="Add to Basket" Clicked="OnBasketAddButtonClicked" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
