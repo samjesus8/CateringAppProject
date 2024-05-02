@@ -53,5 +53,11 @@ public partial class AdminManagePage : ContentPage
 		{
 			await Navigation.PushModalAsync(new EditAdminUserForm(AdminUser));
 		}
+
+        if (e.SelectedItem == null)
+            return;
+
+        if (sender is ListView listView)
+            listView.SelectedItem = null;
     }
 }

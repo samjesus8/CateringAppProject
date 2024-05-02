@@ -46,7 +46,12 @@ public partial class DeleteItemPage : ContentPage
         {
             await Navigation.PushModalAsync(new DeleteItemConfirmPage(selectedFoodItem));
         }
-        
+
+        if (e.SelectedItem == null)
+            return;
+
+        if (sender is ListView listView)
+            listView.SelectedItem = null;
     }
 
     private async void OnBackButtonClick(object sender, EventArgs e)

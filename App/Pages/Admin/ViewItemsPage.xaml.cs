@@ -54,5 +54,11 @@ public partial class ViewItemsPage : ContentPage
                            $"Description: {selectedFoodItem.Description} \n" +
                            $"Price: {selectedFoodItem.Price}", "Close");
         }
+
+        if (e.SelectedItem == null)
+            return;
+
+        if (sender is ListView listView)
+            listView.SelectedItem = null;
     }
 }
