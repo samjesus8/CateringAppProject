@@ -21,6 +21,12 @@
             Icon="{OnPlatform 'admin_icon.png'}" />
 
         <ShellContent
+            Title="Account"
+            ContentTemplate="{DataTemplate local:Account.AccountPage}"
+            Route="AccountPage"
+            Icon="{OnPlatform 'account_icon.png'}" />
+
+        <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"
             Route="AboutPage"

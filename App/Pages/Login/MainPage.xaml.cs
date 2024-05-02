@@ -73,7 +73,7 @@ namespace App.Pages.Login
             else
             {
                 //No such user has been found
-                await DisplayAlert("Error", "User does not exist!!!", "OK");
+                await DisplayAlert("Error", $"{userDetails.Item3}", "OK");
             }
         }
 

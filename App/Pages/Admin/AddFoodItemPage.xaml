@@ -5,7 +5,6 @@
              Title="AddFoodItemPage">
 
     <StackLayout Padding="30,0" Spacing="5">
-        <!-- Input fields for food item details -->
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black"/>
 
         <Label FontSize="18" FontAttributes="Bold" Text="ItemID (Automatically Generated)" />
@@ -23,8 +22,7 @@
         <Label FontSize="18" FontAttributes="Bold" Text="Image URL" />
         <Entry Placeholder="ImageURL" x:Name="ImageURLEntry" />
 
-        <!-- Button to submit the form -->
-        <Button Text="Submit" Clicked="OnSubmitClick" BackgroundColor="Green"/>
+        <Button Text="Create" Clicked="OnSubmitClick" BackgroundColor="Green"/>
     </StackLayout>
     
 </ContentPage>

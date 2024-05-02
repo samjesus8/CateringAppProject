@@ -43,6 +43,8 @@ public partial class AccountCreation : ContentPage
                 Username = username,
                 Password = password,
                 UserID = GenerateID(),
+                Address = "Address",
+                ProfilePictureURL = "https://imgur.com/1VJsWOS.jpeg"
             };
 
             var doesExist = await databaseEngine.CheckUserExistsAsync(newUser.Username);

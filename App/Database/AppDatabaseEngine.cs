@@ -4,7 +4,7 @@ namespace App.Database
 {
     public class AppDatabaseEngine
     {
-        private string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
+        private readonly string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
 
         public async Task<(bool, string)> CreateUserAsync(User user, bool isAdmin)
         {
@@ -15,12 +15,14 @@ namespace App.Database
                 using (var cmd = new NpgsqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO cateringapp.user (userid, username, password, usertype) VALUES (@userid, @username, @password, @usertype)";
+                    cmd.CommandText = "INSERT INTO cateringapp.user (userid, username, password, usertype, address, profilepictureurl) VALUES (@userid, @username, @password, @usertype, @address, @profilepictureurl)";
 
                     //SQL Parameters
                     cmd.Parameters.AddWithValue("userid", user.UserID);
                     cmd.Parameters.AddWithValue("username", user.Username);
                     cmd.Parameters.AddWithValue("password", user.Password);
+                    cmd.Parameters.AddWithValue("address", user.Address);
+                    cmd.Parameters.AddWithValue("profilepictureurl", user.ProfilePictureURL);
 
                     if (isAdmin == true)
                     {
@@ -77,7 +79,7 @@ namespace App.Database
             }
         }
 
-        public async Task<(bool, User)> GetUserAsync(string username)
+        public async Task<(bool, User, string)> GetUserAsync(string username)
         {
             User user = null;
             try
@@ -89,7 +91,7 @@ namespace App.Database
                     using (var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
-                        cmd.CommandText = "SELECT userid, username, password, usertype FROM cateringapp.user WHERE username = @username";
+                        cmd.CommandText = "SELECT userid, username, password, usertype, address, profilepictureurl FROM cateringapp.user WHERE username = @username";
 
                         //SQL Parameters
                         cmd.Parameters.AddWithValue("username", username);
@@ -103,18 +105,20 @@ namespace App.Database
                                     Username = reader.GetString(reader.GetOrdinal("username")),
                                     Password = reader.GetString(reader.GetOrdinal("password")),
                                     UserID = reader.GetInt64(reader.GetOrdinal("userid")),
-                                    UserType = reader.GetString(reader.GetOrdinal("usertype"))
+                                    UserType = reader.GetString(reader.GetOrdinal("usertype")),
+                                    Address = reader.GetString(reader.GetOrdinal("address")),
+                                    ProfilePictureURL = reader.GetString(reader.GetOrdinal("profilepictureurl"))
                                 };
                             }
                         }
                     }
                 }
 
-                return (true, user);
+                return (true, user, null);
             }
             catch (Exception ex)
             {
-                return (false, null);
+                return (false, null, ex.ToString());
             }
         }
 
@@ -131,7 +135,7 @@ namespace App.Database
                     using (var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
-                        cmd.CommandText = "SELECT userid, username, password, usertype FROM cateringapp.user WHERE usertype = 'admin'";
+                        cmd.CommandText = "SELECT userid, username, password, usertype, address, profilepictureurl FROM cateringapp.user WHERE usertype = 'admin'";
 
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {
@@ -142,7 +146,9 @@ namespace App.Database
                                     Username = reader.GetString(reader.GetOrdinal("username")),
                                     Password = reader.GetString(reader.GetOrdinal("password")),
                                     UserID = reader.GetInt64(reader.GetOrdinal("userid")),
-                                    UserType = reader.GetString(reader.GetOrdinal("usertype"))
+                                    UserType = reader.GetString(reader.GetOrdinal("usertype")),
+                                    Address = reader.GetString(reader.GetOrdinal("address")),
+                                    ProfilePictureURL = reader.GetString(reader.GetOrdinal("profilepictureurl"))
                                 });
                             }
                         }
@@ -273,11 +279,13 @@ namespace App.Database
                     using (var cmd = new NpgsqlCommand())
                     {
                         cmd.Connection = conn;
-                        cmd.CommandText = "UPDATE cateringapp.user SET username = @username, password = @password WHERE userid = @userid";
+                        cmd.CommandText = "UPDATE cateringapp.user SET username = @username, password = @password, address = @address, profilepictureurl = @profilepictureurl WHERE userid = @userid";
 
                         //SQL Parameters
                         cmd.Parameters.AddWithValue("username", user.Username);
                         cmd.Parameters.AddWithValue("password", user.Password);
+                        cmd.Parameters.AddWithValue("address", user.Address);
+                        cmd.Parameters.AddWithValue("profilepictureurl", user.ProfilePictureURL);
                         cmd.Parameters.AddWithValue("userid", user.UserID);
 
                         await cmd.ExecuteNonQueryAsync();

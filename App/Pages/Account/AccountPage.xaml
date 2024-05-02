@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:App.Pages.Account"
+             x:Class="App.Pages.Account.AccountPage"
+             Title="AccountPage"
+             x:DataType="viewModels:AccountPage">
+
+    <Grid Padding="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Display profile picture -->
+        <Image Source="{Binding currentUser.ProfilePictureURL}" HeightRequest="160" />
+
+        <!-- Button to upload profile picture -->
+        <Button Text="Upload Profile Picture" Clicked="OnUploadProfilePictureClicked" Grid.Row="1"/>
+
+        <StackLayout Grid.Column="1">
+            <!-- Display username -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Username" />
+            <Entry Text="{Binding currentUser.Username}" Placeholder="Username" x:Name="UsernameEntry" />
+
+            <!-- Display password -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Password" />
+            <Entry Placeholder="Password" x:Name="PasswordEntry" />
+
+            <!-- Display address -->
+            <Label FontSize="18" FontAttributes="Bold" Text="Home Address" />
+            <Entry Text="{Binding currentUser.Address}" Placeholder="Address" x:Name="AddressEntry" />
+
+            <Button Text="Change Details" Clicked="OnChangeClicked" />
+        </StackLayout>
+    </Grid>
+    
+</ContentPage>

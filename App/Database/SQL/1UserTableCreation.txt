@@ -3,5 +3,7 @@
 	"userid" bigint not null primary key,
 	"username" varchar not null,
 	"password" varchar not null,
-	"usertype" varchar not null
+	"usertype" varchar not null,
+	"address" varchar not null,
+	"profilepictureurl" varchar not null
 );
