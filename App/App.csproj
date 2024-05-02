@@ -95,6 +95,12 @@
 	  <MauiXaml Update="Pages\Admin\AdminManagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Admin\DeleteItemConfirmPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\Admin\DeleteItemPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Admin\EditAdminUserForm.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

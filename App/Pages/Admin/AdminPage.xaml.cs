@@ -28,4 +28,9 @@ public partial class AdminPage : ContentPage
     {
         await Navigation.PushAsync(new AdminManagePage());
     }
+
+    private async void OnDeleteItemClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new DeleteItemPage());
+    }
 }

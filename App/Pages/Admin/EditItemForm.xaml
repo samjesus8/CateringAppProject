@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Pages.Admin.EditItemForm"
              Title="EditItemForm">
+    
     <StackLayout Padding="30,0" Spacing="5">
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" VerticalOptions="Start" Margin="10" BackgroundColor="Black" />
 
@@ -20,4 +21,5 @@
         
         <Button Text="Submit Changes" Clicked="OnSubmitChangesClicked" />
     </StackLayout>
+    
 </ContentPage>

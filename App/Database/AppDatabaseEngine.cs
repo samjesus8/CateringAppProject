@@ -58,6 +58,8 @@ namespace App.Database
                     {
                         cmd.Connection = conn;
                         cmd.CommandText = "SELECT EXISTS (SELECT 1 FROM cateringapp.user WHERE username = @username LIMIT 1);";
+
+                        //SQL Parameters
                         cmd.Parameters.AddWithValue("username", username);
 
                         bool userExists = (bool)await cmd.ExecuteScalarAsync();
@@ -122,7 +124,7 @@ namespace App.Database
             }
         }
 
-        public async Task<(bool, List<User>)> GetAllAdminUsersAsync()
+        public async Task<(bool, List<User>, string)> GetAllAdminUsersAsync()
         {
             List<User> adminUsers = new List<User>();
 
@@ -155,11 +157,42 @@ namespace App.Database
                     }
                 }
 
-                return (true, adminUsers);
+                return (true, adminUsers, null);
             }
             catch (Exception ex)
             {
-                return (false, null);
+                return (false, null, ex.ToString());
+            }
+        }
+
+        public async Task<(bool, string)> ModifyUserAsync(User user)
+        {
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "UPDATE cateringapp.user SET username = @username, password = @password, address = @address, profilepictureurl = @profilepictureurl WHERE userid = @userid";
+
+                        //SQL Parameters
+                        cmd.Parameters.AddWithValue("username", user.Username);
+                        cmd.Parameters.AddWithValue("password", user.Password);
+                        cmd.Parameters.AddWithValue("address", user.Address);
+                        cmd.Parameters.AddWithValue("profilepictureurl", user.ProfilePictureURL);
+                        cmd.Parameters.AddWithValue("userid", user.UserID);
+
+                        await cmd.ExecuteNonQueryAsync();
+                        return (true, string.Empty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.ToString());
             }
         }
 
@@ -194,7 +227,7 @@ namespace App.Database
             }
         }
 
-        public async Task<(bool, List<FoodItem>)> GetAllFoodItemsAsync()
+        public async Task<(bool, List<FoodItem>, string)> GetAllFoodItemsAsync()
         {
             List<FoodItem> foodItems = new List<FoodItem>();
 
@@ -228,12 +261,12 @@ namespace App.Database
                     }
                 }
 
-                return (true, foodItems);
+                return (true, foodItems, null);
             }
 
             catch (Exception ex)
             {
-                return (false, null);
+                return (false, null, ex.ToString());
             }
         }
 
@@ -268,34 +301,30 @@ namespace App.Database
             }
         }
 
-        public async Task<(bool, string)> ModifyUserAsync(User user)
+        public async Task<(bool, string)> DeleteItemAsync(long itemID)
         {
-            try
+            using (var conn = new NpgsqlConnection(ConnectionString))
             {
-                using (var conn = new NpgsqlConnection(ConnectionString))
+                await conn.OpenAsync();
+
+                using (var cmd = new NpgsqlCommand())
                 {
-                    await conn.OpenAsync();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DELETE FROM cateringapp.fooditems WHERE itemid = @itemid";
 
-                    using (var cmd = new NpgsqlCommand())
+                    //SQL Parameters
+                    cmd.Parameters.AddWithValue("itemid", itemID);
+
+                    try
                     {
-                        cmd.Connection = conn;
-                        cmd.CommandText = "UPDATE cateringapp.user SET username = @username, password = @password, address = @address, profilepictureurl = @profilepictureurl WHERE userid = @userid";
-
-                        //SQL Parameters
-                        cmd.Parameters.AddWithValue("username", user.Username);
-                        cmd.Parameters.AddWithValue("password", user.Password);
-                        cmd.Parameters.AddWithValue("address", user.Address);
-                        cmd.Parameters.AddWithValue("profilepictureurl", user.ProfilePictureURL);
-                        cmd.Parameters.AddWithValue("userid", user.UserID);
-
                         await cmd.ExecuteNonQueryAsync();
                         return (true, string.Empty);
                     }
+                    catch (Exception ex)
+                    {
+                        return (false, ex.ToString());
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                return (false, ex.ToString());
             }
         }
     }

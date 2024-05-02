@@ -24,6 +24,9 @@
         <HorizontalStackLayout Padding="30,0" Spacing="10">
             <!-- Button to edit current items -->
             <Button Text="Edit Items" Clicked="OnEditItemsClick" HorizontalOptions="Start" Margin="10" />
+
+            <!-- Button to delete an item -->
+            <Button Text="Delete Item" Clicked="OnDeleteItemClick" HorizontalOptions="Start" Margin="10" />
         </HorizontalStackLayout>
 
         <!-- User Management -->

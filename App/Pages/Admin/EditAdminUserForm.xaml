@@ -17,5 +17,6 @@
         <Entry Placeholder="Password" x:Name="PasswordEntry" />
 
         <Button Text="Submit Changes" Clicked="OnSubmitChangesClicked" />
+        
     </StackLayout>
 </ContentPage>

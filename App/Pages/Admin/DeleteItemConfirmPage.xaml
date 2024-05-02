@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Admin.DeleteItemConfirmPage"
+             Title="DeleteItemConfirmPage">
+
+    <StackLayout Padding="30,0" Spacing="10">
+        <Label
+                Text="Are you sure you want to delete this item?"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+        <HorizontalStackLayout Padding="30,0" Spacing="10">
+            <!-- Button to delete the food item -->
+            <Button Text="Yes" Clicked="OnYesClick" HorizontalOptions="Start" Margin="20" />
+
+            <!-- Button to cancel the deletion -->
+            <Button Text="No" Clicked="OnNoClick" HorizontalOptions="Start" Margin="20" />
+        </HorizontalStackLayout>
+    </StackLayout>
+    
+</ContentPage>
