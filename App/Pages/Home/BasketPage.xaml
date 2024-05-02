@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Home.BasketPage"
+             Title="BasketPage">
+
+    <StackLayout Padding="10" Spacing="5">
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black"/>
+        <!-- Basket items -->
+        <CollectionView ItemsSource="{Binding BasketItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" ColumnSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <!-- Item name -->
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Key}" FontSize="18" FontAttributes="Bold" />
+
+                        <!-- Item quantity -->
+                        <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+                            <Button Text="-" Clicked="OnDecreaseQuantityClicked" CommandParameter="{Binding Key}" />
+                            <Label Text="{Binding Value}" />
+                            <Button Text="+" Clicked="OnIncreaseQuantityClicked" CommandParameter="{Binding Key}" />
+                        </StackLayout>
+
+                        <!-- Remove item button -->
+                        <Button Grid.Row="0" Grid.Column="2" Text="Remove" Clicked="OnRemoveItemClicked" CommandParameter="{Binding Key}" />
+
+                        <!-- Price for this item -->
+                        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding TotalPrice}" FontSize="16" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Total price -->
+        <Label Text="{Binding TotalPrice}" FontSize="20" FontAttributes="Bold" HorizontalOptions="End" />
+
+        <!-- Proceed to payment button -->
+        <Button Text="Proceed to Payment" Clicked="OnProceedToPaymentClicked" />
+    </StackLayout>
+
+</ContentPage>

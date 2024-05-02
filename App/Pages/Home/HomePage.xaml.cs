@@ -49,7 +49,7 @@ public partial class HomePage : ContentPage
 
     private async void OnBasketClicked(object sender, EventArgs e)
     {
-        await DisplayAlert("Test", "Test", "OK");
+        await Navigation.PushModalAsync(new BasketPage());
     }
 
     private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
