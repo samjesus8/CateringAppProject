@@ -18,6 +18,14 @@
                 DisplayAlert("Invalid Operation", "Please login to view your account!!!", "OK");
             }
 
+            // Check if the user is pressing orders without being logged in
+            if (e.Target.Location.OriginalString == "//OrdersPage" && MauiProgram.currentlyLoggedInUser.UserType == null)
+            {
+                e.Cancel();
+
+                DisplayAlert("Invalid Operation", "Please login to your account to view orders!!!", "OK");
+            }
+
             // Check if the user is pressing admin without being logged in
             if (e.Target.Location.OriginalString == "//AdminPage" && MauiProgram.currentlyLoggedInUser.UserType == null)
             {
