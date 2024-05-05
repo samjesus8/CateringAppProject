@@ -22,7 +22,7 @@
 
         <ShellContent
             Title="Orders"
-            ContentTemplate="{DataTemplate local:Orders.OrdersPage}"
+            ContentTemplate="{DataTemplate local:Orders.UserViewOrdersPage}"
             Route="OrdersPage"
             Icon="{OnPlatform 'order_list_icon.png'}" />
 

@@ -36,8 +36,17 @@ public partial class ViewOrdersPage : ContentPage
 		await Navigation.PopAsync();
 	}
 
-    private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
+		if (e.SelectedItem != null && e.SelectedItem is Order selectedOrder)
+		{
+			await Navigation.PushModalAsync(new OrderDetailPage(selectedOrder));
+		}
 
+        if (e.SelectedItem == null)
+            return;
+
+        if (sender is ListView listView)
+            listView.SelectedItem = null;
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Orders.UserOrderDetailPage"
+             Title="UserOrderDetailPage">
+
+    <StackLayout Padding="30,0" Spacing="10">
+        <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black"/>
+
+        <Label FontSize="18" FontAttributes="Bold" Text="OrderID" />
+        <Entry Placeholder="OrderID" x:Name="OrderIDEntry" IsReadOnly="True"/>
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Submitted By" />
+        <Entry Placeholder="Username" x:Name="UsernameEntry" IsReadOnly="True"/>
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Status" />
+        <Entry Placeholder="STatus" x:Name="StatusEntry" IsReadOnly="True"/>
+
+        <Label FontSize="18" FontAttributes="Bold" Text="Items" />
+        <ListView ItemsSource="{Binding Items}" x:Name="ItemsListView" HeightRequest="200">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Key}" FontSize="16" FontAttributes="Bold"/>
+                            <Label Text="{Binding Value}" FontSize="14"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Pages.Orders.UserViewOrdersPage"
+             Title="UserViewOrdersPage">
+    
+    <StackLayout Padding="20,0" Spacing="10">
+        <Label
+                Text="Orders"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+        <ListView ItemsSource="{Binding Orders}" ItemSelected="ListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding OrderID, StringFormat='Order {0}'}"
+                              Detail="{Binding Username, StringFormat='Username: {0}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    
+</ContentPage>
