@@ -1,0 +1,7 @@
+﻿create table if not exists cateringapp."orders"
+(
+	"orderid" bigint not null primary key,
+	"username" varchar not null,
+	"items" varchar[2] not null,
+	"status" varchar not null
+);

@@ -35,6 +35,11 @@
             <Button Text="Manage Admin Accounts" Clicked="OnManageAdminClick" HorizontalOptions="Start" Margin="10" />
         </HorizontalStackLayout>
 
+        <!-- Order Management -->
+        <Label FontSize="20" FontAttributes="Bold" Text="Orders" />
+        <HorizontalStackLayout Padding="30,0" Spacing="10">
+            <Button Text="Manage Orders" Clicked="OnManageOrdersClick" HorizontalOptions="Start" Margin="10" />
+        </HorizontalStackLayout>
     </StackLayout>
     
 </ContentPage>

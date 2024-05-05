@@ -27,10 +27,15 @@ public partial class AccountPage : ContentPage
 
 	private async void OnChangeClicked(object sender, EventArgs e)
 	{
-		if (!string.IsNullOrWhiteSpace(this.UsernameEntry.Text) || !string.IsNullOrWhiteSpace(this.PasswordEntry.Text) || !string.IsNullOrWhiteSpace(this.AddressEntry.Text))
+		//If password field isn't empty, replace the user's password. Else don't change it
+		if (!string.IsNullOrWhiteSpace(this.PasswordEntry.Text))
+		{
+			MauiProgram.currentlyLoggedInUser.Password = this.PasswordEntry.Text;
+		}
+
+		if (!string.IsNullOrWhiteSpace(this.UsernameEntry.Text) || !string.IsNullOrWhiteSpace(this.AddressEntry.Text))
 		{
 			MauiProgram.currentlyLoggedInUser.Username = this.UsernameEntry.Text;
-			MauiProgram.currentlyLoggedInUser.Password = this.PasswordEntry.Text;
 			MauiProgram.currentlyLoggedInUser.Address = this.AddressEntry.Text;
 
 			var isModified = await databaseEngine.ModifyUserAsync(MauiProgram.currentlyLoggedInUser);

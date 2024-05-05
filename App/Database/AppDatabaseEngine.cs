@@ -1,4 +1,7 @@
-﻿using Npgsql;
+﻿using Microsoft.Maui.Controls;
+using Newtonsoft.Json;
+using Npgsql;
+using NpgsqlTypes;
 
 namespace App.Database
 {
@@ -6,6 +9,7 @@ namespace App.Database
     {
         private readonly string ConnectionString = "Host=byhjoscxxfeyki7vts5z-postgresql.services.clever-cloud.com:50013;Username=u8vonutic9opav9ir8zc;Password=PY8P8MwvMrYCy6YWTX7D3tb85limQR;Database=byhjoscxxfeyki7vts5z";
 
+        // Methods for User Management
         public async Task<(bool, string)> CreateUserAsync(User user, bool isAdmin)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
@@ -196,6 +200,7 @@ namespace App.Database
             }
         }
 
+        //Methods for FoodItem Management
         public async Task<(bool, string)> StoreFoodItemAsync(FoodItem item)
         {
             using (var conn = new NpgsqlConnection(ConnectionString))
@@ -326,6 +331,93 @@ namespace App.Database
                     }
                 }
             }
+        }
+
+        //Methods for Order Management
+        public async Task<(bool, string)> CreateOrderAsync(Order order)
+        {
+            //Serialise items dictionary to JSON before storing
+            var items = JsonConvert.SerializeObject(order.Items);
+
+            using (var conn = new NpgsqlConnection(ConnectionString))
+            {
+                await conn.OpenAsync();
+
+                using (var cmd = new NpgsqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "INSERT into cateringapp.orders (orderid, username, items, status) VALUES (@orderid, @username, @items, @status)";
+
+                    //SQL Parameters
+                    cmd.Parameters.AddWithValue("orderid", order.OrderID);
+                    cmd.Parameters.AddWithValue("username", order.Username);
+                    cmd.Parameters.AddWithValue("items", NpgsqlDbType.Jsonb, items);
+                    cmd.Parameters.AddWithValue("status", order.Status);
+
+                    try
+                    {
+                        await cmd.ExecuteNonQueryAsync();
+                        return (true, string.Empty);
+                    }
+                    catch (Exception ex)
+                    {
+                        return (false, ex.ToString());
+                    }
+                }
+            }
+        }
+
+        public async Task<(bool, List<Order>, string)> GetAllOrdersAsync()
+        {
+            List<Order> orders = new List<Order>();
+
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "SELECT orderid, username, items, status FROM cateringapp.orders";
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                orders.Add(new Order
+                                {
+                                    OrderID = reader.GetInt64(reader.GetOrdinal("orderid")),
+                                    Username = reader.GetString(reader.GetOrdinal("username")),
+                                    Items = JsonConvert.DeserializeObject<Dictionary<string, int>>(reader.GetString(reader.GetOrdinal("items"))),
+                                    Status = reader.GetString(reader.GetOrdinal("status"))
+                                });
+                            }
+                        }
+                    }
+                }
+
+                return (true, orders, string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return (false, null, ex.ToString());
+            }
+        }
+
+        //Other Methods
+        public long GenerateID()
+        {
+            var random = new Random();
+
+            long minValue = 1000000000000;
+            long maxValue = 9999999999999;
+
+            long randomNumber = (long)random.Next((int)(minValue >> 32), int.MaxValue) << 32 | (long)random.Next();
+            long result = randomNumber % (maxValue - minValue + 1) + minValue;
+
+            return result;
         }
     }
 }

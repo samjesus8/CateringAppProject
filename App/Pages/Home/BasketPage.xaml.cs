@@ -106,9 +106,30 @@ public partial class BasketPage : ContentPage, INotifyPropertyChanged
         }
     }
 
-    private void OnProceedToPaymentClicked(object sender, EventArgs e)
+    private async void OnProceedToPaymentClicked(object sender, EventArgs e)
     {
-        // Implement logic to proceed to payment
+        var order = new Order
+        {
+            OrderID = databaseEngine.GenerateID(),
+            Username = MauiProgram.currentlyLoggedInUser.Username,
+            Items = MauiProgram.currentUserBasket,
+            Status = "Submitted Order"
+        };
+
+        var isSubmitted = await databaseEngine.CreateOrderAsync(order);
+        if (isSubmitted.Item1 == true)
+        {
+            await DisplayAlert("Succesfully placed order!!!", "You can view your order details by clicking on the order tab at the bottom", "OK");
+
+            //Clear the basket before returning to the menu
+            MauiProgram.currentUserBasket.Clear();
+
+            await Navigation.PopModalAsync();
+        }
+        else
+        {
+            await DisplayAlert("Error", $"Something went wrong when trying to place this order\n\n{isSubmitted.Item2}", "OK");
+        }
     }
 
     protected virtual void OnPropertyChanged(string propertyName)
