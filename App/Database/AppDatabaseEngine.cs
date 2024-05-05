@@ -406,6 +406,34 @@ namespace App.Database
             }
         }
 
+        public async Task<(bool, string)> ModifyOrderStatusAsync(string status, long orderID)
+        {
+            try
+            {
+                using (var conn = new NpgsqlConnection(ConnectionString))
+                {
+                    await conn.OpenAsync();
+
+                    using (var cmd = new NpgsqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = "UPDATE cateringapp.orders SET status = @status WHERE orderid = @orderid";
+
+                        //SQL Parameters
+                        cmd.Parameters.AddWithValue("status", status);
+                        cmd.Parameters.AddWithValue("orderid", orderID);
+
+                        await cmd.ExecuteNonQueryAsync();
+                        return (true, string.Empty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.ToString());
+            }
+        }
+
         //Other Methods
         public long GenerateID()
         {

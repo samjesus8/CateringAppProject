@@ -12,7 +12,8 @@
 
         <Button Text="Back" Clicked="OnBackButtonClick" HorizontalOptions="Start" Margin="10" BackgroundColor="Black" />
 
-        <ListView ItemsSource="{Binding Orders}" ItemSelected="ListView_ItemSelected">
+        <Label FontSize="18" FontAttributes="Bold" Text="Incoming Orders" />
+        <ListView ItemsSource="{Binding IncomingOrders}" ItemSelected="Incoming_ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding OrderID, StringFormat='Order {0}'}"
@@ -20,6 +21,28 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        
+        <Label FontSize="18" FontAttributes="Bold" Text="In Progress" />
+        <ListView ItemsSource="{Binding InProgressOrders}" ItemSelected="InProgress_ListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding OrderID, StringFormat='Order {0}'}"
+                              Detail="{Binding Username, StringFormat='Username: {0}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Label FontSize="18" FontAttributes="Bold" Text="Complete" />
+        <ListView ItemsSource="{Binding CompletedOrders}" ItemSelected="Completed_ListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding OrderID, StringFormat='Order {0}'}"
+                              Detail="{Binding Username, StringFormat='Username: {0}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
     </StackLayout>
     
 </ContentPage>

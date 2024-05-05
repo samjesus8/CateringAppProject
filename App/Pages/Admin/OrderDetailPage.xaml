@@ -13,6 +13,9 @@
         <Label FontSize="18" FontAttributes="Bold" Text="Submitted By" />
         <Entry Placeholder="Username" x:Name="UsernameEntry" IsReadOnly="True"/>
 
+        <Label FontSize="18" FontAttributes="Bold" Text="Status" />
+        <Entry Placeholder="Status" x:Name="StatusEntry" IsReadOnly="True"/>
+
         <Label FontSize="18" FontAttributes="Bold" Text="Items" />
         <ListView ItemsSource="{Binding Items}" x:Name="ItemsListView" HeightRequest="200">
             <ListView.ItemTemplate>
