@@ -1,26 +1,53 @@
 using App.Database;
+using System.ComponentModel;
 
 namespace App.Pages.Account;
 
-public partial class AccountPage : ContentPage
+public partial class AccountPage : ContentPage, INotifyPropertyChanged
 {
     private readonly AppDatabaseEngine databaseEngine;
-    public User currentUser { get; set; }
-	public AccountPage()
+    private User _currentUser;
+    public User currentUser
+    {
+        get => _currentUser;
+        set
+        {
+            if (_currentUser != value)
+            {
+                _currentUser = value;
+                OnPropertyChanged(nameof(currentUser));
+            }
+        }
+    }
+    public event PropertyChangedEventHandler PropertyChanged;
+    public AccountPage()
 	{
 		InitializeComponent();
 		this.databaseEngine = new AppDatabaseEngine();
-
-		//Set current user to the currently logged in user
-		this.currentUser = MauiProgram.currentlyLoggedInUser;
-
-		//Setting fields
-		this.UsernameEntry.Text = this.currentUser.Username;
-		this.AddressEntry.Text = this.currentUser.Address;
-		BindingContext = this;
+        LoadUser();
+        BindingContext = this;
 	}
 
-	private async void OnUploadProfilePictureClicked(object sender, EventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		LoadUser();
+    }
+
+    protected virtual void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private async void LoadUser()
+	{
+		var user = await databaseEngine.GetUserAsync(MauiProgram.currentlyLoggedInUser.Username);
+		this.currentUser = user.Item2;
+		this.UsernameEntry.Text = user.Item2.Username;
+		this.AddressEntry.Text = user.Item2.Address;
+	}
+
+    private async void OnUploadProfilePictureClicked(object sender, EventArgs e)
 	{
 		await Navigation.PushModalAsync(new ProfilePictureUpdatePage());
 	}
