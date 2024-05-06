@@ -9,7 +9,7 @@ public partial class AddFoodItemPage : ContentPage
 	{
 		InitializeComponent();
         databaseEngine = new AppDatabaseEngine();
-        ItemIDEntry.Text = GenerateID().ToString();
+        ItemIDEntry.Text = databaseEngine.GenerateID().ToString();
 	}
 
     private async void OnBackButtonClick(object sender, EventArgs e)
@@ -59,18 +59,5 @@ public partial class AddFoodItemPage : ContentPage
             //Display Error Message
             await DisplayAlert("Error", $"Could not add this item!!! \n\n{isStored.Item2}", "OK");
         }
-    }
-
-    private long GenerateID()
-    {
-        var random = new Random();
-
-        long minValue = 1000000000000;
-        long maxValue = 9999999999999;
-
-        long randomNumber = (long)random.Next((int)(minValue >> 32), int.MaxValue) << 32 | (long)random.Next();
-        long result = randomNumber % (maxValue - minValue + 1) + minValue;
-
-        return result;
     }
 }

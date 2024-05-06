@@ -42,7 +42,7 @@ public partial class AccountCreation : ContentPage
             {
                 Username = username,
                 Password = password,
-                UserID = GenerateID(),
+                UserID = databaseEngine.GenerateID(),
                 Address = "Address",
                 ProfilePictureURL = "https://imgur.com/1VJsWOS.jpeg"
             };
@@ -83,18 +83,5 @@ public partial class AccountCreation : ContentPage
         {
             await DisplayAlert("Error", "Please enter username and password.", "OK");
         }
-    }
-
-    private long GenerateID()
-    {
-        var random = new Random();
-
-        long minValue = 1000000000000;
-        long maxValue = 9999999999999;
-
-        long randomNumber = (long)random.Next((int)(minValue >> 32), int.MaxValue) << 32 | (long)random.Next();
-        long result = randomNumber % (maxValue - minValue + 1) + minValue;
-
-        return result;
     }
 }
