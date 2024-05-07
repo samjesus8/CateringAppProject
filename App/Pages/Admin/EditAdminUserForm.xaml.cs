@@ -28,7 +28,9 @@ public partial class EditAdminUserForm : ContentPage
 			UserID = this.SelectedAdminUser.UserID,
 			Username = this.UsernameEntry.Text,
 			Password = this.PasswordEntry.Text,
-			UserType = this.SelectedAdminUser.UserType
+			UserType = this.SelectedAdminUser.UserType,
+			Address = this.SelectedAdminUser.Address,
+			ProfilePictureURL = this.SelectedAdminUser.ProfilePictureURL
 		};
 
 		var isModified = await databaseEngine.ModifyUserAsync(modifiedUser);

@@ -14,7 +14,7 @@
         <Entry Placeholder="Username" x:Name="UsernameEntry" />
 
         <Label FontSize="18" FontAttributes="Bold" Text="Password" />
-        <Entry Placeholder="Password" x:Name="PasswordEntry" />
+        <Entry Placeholder="Password" x:Name="PasswordEntry" IsPassword="True"/>
 
         <Button Text="Submit Changes" Clicked="OnSubmitChangesClicked" />
         

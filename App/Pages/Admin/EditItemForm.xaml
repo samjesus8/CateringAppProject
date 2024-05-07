@@ -14,7 +14,7 @@
         <Entry Placeholder="Description" Text="{Binding SelectedFoodItem.Description}" x:Name="DescriptionEntry" />
 
         <Label FontSize="18" FontAttributes="Bold" Text="Price" />
-        <Entry Placeholder="Price" Text="{Binding SelectedFoodItem.Price}" x:Name="PriceEntry" />
+        <Entry Placeholder="Price" Text="{Binding SelectedFoodItem.Price}" x:Name="PriceEntry" Keyboard="Numeric" />
 
         <Label FontSize="18" FontAttributes="Bold" Text="Image URL" />
         <Entry Placeholder="Image URL" Text="{Binding SelectedFoodItem.ImageURL}" x:Name="ImageURLEntry" />

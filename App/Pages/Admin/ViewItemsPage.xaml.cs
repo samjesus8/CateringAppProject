@@ -20,6 +20,12 @@ public partial class ViewItemsPage : ContentPage
         LoadItems();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadItems();
+    }
+
     private async void LoadItems()
     {
         // Retrieve the list of food items from the database

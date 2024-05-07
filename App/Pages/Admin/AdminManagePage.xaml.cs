@@ -21,7 +21,13 @@ public partial class AdminManagePage : ContentPage
 		LoadAdminUsers();
 	}
 
-	private async void OnAddAdminClick(object sender, EventArgs e)
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+		LoadAdminUsers();
+    }
+
+    private async void OnAddAdminClick(object sender, EventArgs e)
 	{
 		await Navigation.PushAsync(new AccountCreation(true));
 	}
